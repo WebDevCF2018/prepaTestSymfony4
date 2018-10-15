@@ -17,4 +17,6 @@
 - create the database schema with Workbench : /datas/prepatestsymfony4.mwb
 - export diagram to image: /datas/diagram.png
 - real export in localhost (see /datas/export1-structure.sql)
-### step 5
+### step 5 change .env
+change .env
+> DATABASE_URL=mysql://root:@127.0.0.1:3306/prepatestsymfony4
