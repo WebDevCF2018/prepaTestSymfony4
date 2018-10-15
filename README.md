@@ -10,4 +10,5 @@
 - move prov's content to our project prepaTestSymfony4
 - remove prov's folder
 - if you work with phpstorm, put /.idea/ into .gitignore
-
+### step 3 add security checker
+> composer require sensiolabs/security-checker --dev
