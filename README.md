@@ -22,3 +22,5 @@ change .env
 > DATABASE_URL=mysql://root:@127.0.0.1:3306/prepatestsymfony4
 ### step 6 create mapping database
 > php bin/console doctrine:mapping:import 'App\Entity' annotation --path=src/Entity 
+### step 7 create setters and getters for entities
+> php bin/console make:entity App\Entity --regenerate

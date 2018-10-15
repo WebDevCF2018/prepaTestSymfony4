@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -56,6 +58,61 @@ class Sections
     public function __construct()
     {
         $this->articlesarticles = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    public function getIdsections(): ?int
+    {
+        return $this->idsections;
+    }
+
+    public function getThetitled(): ?string
+    {
+        return $this->thetitled;
+    }
+
+    public function setThetitled(string $thetitled): self
+    {
+        $this->thetitled = $thetitled;
+
+        return $this;
+    }
+
+    public function getThedesc(): ?string
+    {
+        return $this->thedesc;
+    }
+
+    public function setThedesc(?string $thedesc): self
+    {
+        $this->thedesc = $thedesc;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Articles[]
+     */
+    public function getArticlesarticles(): Collection
+    {
+        return $this->articlesarticles;
+    }
+
+    public function addArticlesarticle(Articles $articlesarticle): self
+    {
+        if (!$this->articlesarticles->contains($articlesarticle)) {
+            $this->articlesarticles[] = $articlesarticle;
+        }
+
+        return $this;
+    }
+
+    public function removeArticlesarticle(Articles $articlesarticle): self
+    {
+        if ($this->articlesarticles->contains($articlesarticle)) {
+            $this->articlesarticles->removeElement($articlesarticle);
+        }
+
+        return $this;
     }
 
 }
