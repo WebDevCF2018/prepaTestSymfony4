@@ -12,3 +12,9 @@
 - if you work with phpstorm, put /.idea/ into .gitignore
 ### step 3 add security checker
 > composer require sensiolabs/security-checker --dev
+### step 4 create externe DB MySQL
+- create datas folder
+- create the database schema with Workbench : /datas/prepatestsymfony4.mwb
+- export diagram to image: /datas/diagram.png
+- real export in localhost (see /datas/export1-structure.sql)
+### step 5
