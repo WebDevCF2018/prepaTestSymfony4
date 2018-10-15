@@ -58,3 +58,25 @@ in index.html.twig
         {{ itemMenu.getIdsections }}">{{ itemMenu.getThetitled }}</a>
     </li>
             {% endfor %}
+### step 14 - get all articles on index.php 
+in front of PublicController.php
+        
+    // use entity Articles.php
+    use App\Entity\Articles;         
+in index.html.twig
+
+
+    // get Doctrine Manager for all entities
+        $entityManager = $this->getDoctrine()->getManager();
+
+        // get all sections in db
+        $rub = $entityManager->getRepository(Sections::class)->findAll();
+
+        // get all articles from db
+        $art = $entityManager->getRepository(Articles::class)->findAll();
+
+        return $this->render('public/index.html.twig', [
+            'sections' => $rub,
+            'articles' => $art,
+        ]);  
+      
