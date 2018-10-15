@@ -29,3 +29,5 @@ change .env
 ### step 9 change routing
 to the root in annotation
 > "/", name="accueil"
+### step 10 install bootstrap 4 CDN
+- CDN in base.html.twig
