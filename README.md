@@ -79,4 +79,19 @@ in index.html.twig
             'sections' => $rub,
             'articles' => $art,
         ]);  
-      
+### step 15 - display all articles on index.html.twig
+- no difference for the fields into Articles
+- automatical INNER JOIN or new query when we make the link one to many or many to many
+
+        {% for item in articles %}
+            <h2>{{ item.getThetitle }}</h2>
+            <h3>
+                {% for categ in item.getSectionssections %}
+                    {{ categ.getThetitled }} |
+                {% endfor %}
+            </h3>
+            <p>{{ item.getThetext|slice(0,350) }} ... </p>
+            <h4>Par {{ item.getUsersusers.getTherealname }} 
+            le {{ item.getThedate|date("d/m/Y à H \\h i \\m") }}</h4><hr>
+        {% endfor %} 
+             
