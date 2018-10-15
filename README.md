@@ -24,3 +24,5 @@ change .env
 > php bin/console doctrine:mapping:import 'App\Entity' annotation --path=src/Entity 
 ### step 7 create setters and getters for entities
 > php bin/console make:entity App\Entity --regenerate
+### step 8 create PublicController
+> php bin/console make:controller PublicController
