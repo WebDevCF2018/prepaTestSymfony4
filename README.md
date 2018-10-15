@@ -26,3 +26,6 @@ change .env
 > php bin/console make:entity App\Entity --regenerate
 ### step 8 create PublicController
 > php bin/console make:controller PublicController
+### step 9 change routing
+to the root in annotation
+> "/", name="accueil"
