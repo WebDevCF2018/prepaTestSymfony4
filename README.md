@@ -31,3 +31,7 @@ to the root in annotation
 > "/", name="accueil"
 ### step 10 install bootstrap 4 CDN
 - CDN in base.html.twig
+### step 11 choose a theme
+Free bootstrap basic themes: https://startbootstrap.com/
+- I choose:  https://startbootstrap.com/template-overviews/bare/
+- we make a good general template.html.twig with bootstrap end block

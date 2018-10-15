@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}NosActus.be{% endblock %}
+
+{% block body %}
+
+    {% block entete %}
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+        <div class="container">
+        <a class="navbar-brand" href="{{ path("accueil") }}">NosActus.be</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+    {% endblock %}
+
+    {% block menu %}
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ path("accueil") }}">Accueil
+                    <span class="sr-only">(current)</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Services</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Contact</a>
+            </li>
+        </ul>
+        </div>
+        </div>
+        </nav>
+    {% endblock %}
+
+    {% block content %}
+        <!-- Page Content -->
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h1 class="mt-5">{% block titre %}NosActus.be{% endblock %}</h1>
+                    <p class="lead">{% block stitre %}un sous-titre{% endblock %}</p>
+                    <div class="col-sm-9 col-md-offset-2 col-md-5">
+                        {% block contenu %}Le texte de la page{% endblock %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+
+    {% block footer %}
+        <div><hr><footer class="blockquote-footer">Create by <cite title="Source Title">© Pitz Michaël</cite> - 2018</footer></div>
+    {% endblock %}
+
+{% endblock %}
