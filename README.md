@@ -35,3 +35,6 @@ to the root in annotation
 Free bootstrap basic themes: https://startbootstrap.com/
 - I choose:  https://startbootstrap.com/template-overviews/bare/
 - we make a good general template.html.twig with bootstrap end block
+### step 12 export datas
+export dats in datas/export2-datas.sql
+
