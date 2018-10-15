@@ -37,4 +37,24 @@ Free bootstrap basic themes: https://startbootstrap.com/
 - we make a good general template.html.twig with bootstrap end block
 ### step 12 export datas
 export dats in datas/export2-datas.sql
+### step 13: menu
+in front of PublicController.php
+                       
+    use App\Entity\Sections;
+in index method
 
+    // get Doctrine Manager for all entities
+    $entityManager = $this->getDoctrine()->getManager();
+    // get all sections in db
+    $rub = $entityManager->getRepository(Sections::class)->findAll();
+    return $this->render('public/index.html.twig', [
+    'sections' => $rub,
+    ]);
+in index.html.twig
+                    
+    {% for itemMenu in sections %}
+    <li class="nav-item">
+        <a class="nav-link" href="./section/
+        {{ itemMenu.getIdsections }}">{{ itemMenu.getThetitled }}</a>
+    </li>
+            {% endfor %}

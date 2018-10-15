@@ -3,6 +3,25 @@
 
 {% block titre %}{{ parent() }} - Accueil{% endblock %}
 {% block stitre %}Bienvenue sur notre site d'actualité pour Webdev{% endblock %}
+
+{% block menu %}
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+            <a class="nav-link" href="{{ path("accueil") }}">Accueil
+                <span class="sr-only">(current)</span>
+            </a>
+        </li>
+        {% for itemMenu in sections %}
+        <li class="nav-item">
+            <a class="nav-link" href="./section/{{ itemMenu.getIdsections }}">{{ itemMenu.getThetitled }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+    </div>
+    </div>
+    </nav>
+{% endblock %}
+
 {% block contenu %}
 
 {% endblock %}
