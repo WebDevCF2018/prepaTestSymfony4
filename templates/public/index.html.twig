@@ -27,7 +27,7 @@
                 {{ categ.getThetitled }} |
             {% endfor %}
         </h3>
-        <p>{{ item.getThetext|truncate(350,true) }} <a href="./article/{{ item.getIdarticles }}">Lire la suite</a></p>
+        <p>{{ item.getThetext|truncate(350,true) }} <a href="{{ path("detail_article",{'id': item.getIdarticles}) }}">Lire la suite</a></p>
         <h4>Par {{ item.getUsersusers.getTherealname }} le {{ item.getThedate|date("d/m/Y à H \\h i \\m") }}</h4><hr>
     {% endfor %}
 {% endblock %}

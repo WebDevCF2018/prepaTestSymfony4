@@ -164,5 +164,8 @@ in index.html.twig
             ]);
         }  
 - create templates/public/one_article.html.twig
+ 
+  ###  019 create link's dynamique with path
     
+        {{ path("detail_article",{'id': item.getIdarticles}) }}   
     
