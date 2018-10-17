@@ -169,3 +169,27 @@ in index.html.twig
     
         {{ path("detail_article",{'id': item.getIdarticles}) }}   
     
+  ### 020 create Sections system
+  - create oneSection($id) in PublicContraller
+  - "if" in twig for active menu, create variable with "set"
+  - change the link to dynamique
+  - create the good many2many's relation:
+    
+        // get Doctrine Manager for all entities
+                $entityManager = $this->getDoctrine()->getManager();
+        
+                // get all sections in db for menu
+                $rub = $entityManager->getRepository(Sections::class)->findAll();
+        
+                // get one section by its "id" from db
+                $section = $entityManager->getRepository(Sections::class)->find($id);
+        
+                // get all articles by one section
+                $art = $section->getArticlesarticles();
+        
+                // return the Twig's view with 2 arguments
+                return $this->render('public/one_section.html.twig', [
+                    'sections' => $rub,
+                    'section' => $section,
+                    'articles' => $art,
+                ]);

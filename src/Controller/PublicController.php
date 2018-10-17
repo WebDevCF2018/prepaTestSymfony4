@@ -58,4 +58,32 @@ class PublicController extends AbstractController
             'articles' => $art,
         ]);
     }
+    /**
+     *
+     * Matches /section/{id},
+     * {id} is a requirement digit: "\d+" for more security
+     * to view an section's detail
+     *
+     * @Route("/section/{id}", name="detail_section", requirements={"id"="\d+"})
+     */
+    public function oneSection($id){
+        // get Doctrine Manager for all entities
+        $entityManager = $this->getDoctrine()->getManager();
+
+        // get all sections in db for menu
+        $rub = $entityManager->getRepository(Sections::class)->findAll();
+
+        // get one section by its "id" from db
+        $section = $entityManager->getRepository(Sections::class)->find($id);
+
+        // get all articles by one section
+        $art = $section->getArticlesarticles();
+
+        // return the Twig's view with 2 arguments
+        return $this->render('public/one_section.html.twig', [
+            'sections' => $rub,
+            'section' => $section,
+            'articles' => $art,
+        ]);
+    }
 }
