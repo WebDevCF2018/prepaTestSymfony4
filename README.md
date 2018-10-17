@@ -94,4 +94,27 @@ in index.html.twig
             <h4>Par {{ item.getUsersusers.getTherealname }} 
             le {{ item.getThedate|date("d/m/Y à H \\h i \\m") }}</h4><hr>
         {% endfor %} 
-             
+### step 16 - divise entete in two parts
+
+    {% block entete_haut %}
+            <!-- Navigation -->
+            <nav class="navbar navbar-expand-lg navbar-dark
+             bg-dark static-top">
+            <div class="container">
+            <a class="navbar-brand" href="{{ path("accueil") }}"
+            >NosActus.be</a>
+            <button class="navbar-toggler" type="button" 
+            data-toggle="collapse" data-target="#navbarResponsive" 
+            aria-controls="navbarResponsive" aria-expanded="false"
+             aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+        {% endblock %}             
+        {% block menu %}....{% endblock %}
+       {% block entete_bas %}
+           </div>
+           </div>
+           </nav>
+       {% endblock %} 
+###        

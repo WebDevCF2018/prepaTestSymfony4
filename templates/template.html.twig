@@ -4,7 +4,7 @@
 
 {% block body %}
 
-    {% block entete %}
+    {% block entete_haut %}
         <!-- Navigation -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
         <div class="container">
@@ -32,10 +32,13 @@
                 <a class="nav-link" href="#">Contact</a>
             </li>
         </ul>
-        </div>
-        </div>
-        </nav>
     {% endblock %}
+
+{% block entete_bas %}
+    </div>
+    </div>
+    </nav>
+{% endblock %}
 
     {% block content %}
         <!-- Page Content -->
