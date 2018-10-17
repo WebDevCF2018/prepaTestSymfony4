@@ -117,4 +117,22 @@ in index.html.twig
            </div>
            </nav>
        {% endblock %} 
-###        
+###  017 install twig extensions for use truncate     
+    composer require twig/extensions
+ after in config/packages/twig_extensions, decomment Twig\Extensions\TextExtension:
+    
+    services:
+        _defaults:
+            public: false
+            autowire: true
+            autoconfigure: true
+    
+        # Uncomment any lines below to activate 
+        that Twig extension
+        #Twig\Extensions\ArrayExtension: ~
+        #Twig\Extensions\DateExtension: ~
+        #Twig\Extensions\IntlExtension: ~
+        Twig\Extensions\TextExtension: ~
+ use truncate in index.html.twig
+    
+    <p>{{ item.getThetext|truncate(350,true) }}</p>
