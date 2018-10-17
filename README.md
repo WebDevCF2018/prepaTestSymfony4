@@ -136,3 +136,33 @@ in index.html.twig
  use truncate in index.html.twig
     
     <p>{{ item.getThetext|truncate(350,true) }}</p>
+ ###  018 create the one article system
+ - PublicController.php
+    
+    /**
+         *
+         * Matches /article/{id},
+         * {id} is a requirement digit: "\d+" for more security
+         * to view an article's detail
+         *
+         * @Route("/article/{id}", name="detail_article", requirements={"id"="\d+"})
+         */
+        public function oneArticle($id){
+            // get Doctrine Manager for all entities
+            $entityManager = $this->getDoctrine()->getManager();
+    
+            // get all sections in db for menu
+            $rub = $entityManager->getRepository(Sections::class)->findAll();
+    
+            // get one article by its "id" from db
+            $art = $entityManager->getRepository(Articles::class)->find($id);
+    
+            // return the Twig's view with 2 arguments
+            return $this->render('public/one_article.html.twig', [
+                'sections' => $rub,
+                'articles' => $art,
+            ]);
+        }  
+- create templates/public/one_article.html.twig
+    
+    
