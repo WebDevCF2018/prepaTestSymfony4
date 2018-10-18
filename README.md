@@ -325,4 +325,8 @@ write the complete relation in the 2 classes, but inverse the column
              */
             private $sectionssections;
   
-           
+ ### 31 template the admin
+ 
+ 
+ 
+          
