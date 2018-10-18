@@ -20,6 +20,9 @@
 {% endblock %}
 
 {% block contenu %}
+    {% if articles is empty %}
+        <h3>Il n'y a pas encore d'article sur notre site</h3><hr>
+    {% endif %}
     {% for item in articles %}
         <h2>{{ item.getThetitle }}</h2>
         <h3>

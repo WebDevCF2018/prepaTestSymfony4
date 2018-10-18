@@ -228,5 +228,15 @@ in index.html.twig
  
  > {{ path("detail_section",{"id":categ.getIdsections}) }}
  
- 
+ ### 24 if not article, write a message
+ > public/one_section.html.twig
+    
+    {% if articles is empty %}
+            <h3><small>Il n'y a pas encore d'article dans cette rubrique</small>
+            <a href="{{ path("accueil") }}">Retour à l'accueil</a></h3><hr>
+     {% endif %}
+ > public/index.html.twig
         
+        {% if articles is empty %}
+                <h3>Il n'y a pas encore d'article sur notre site</h3><hr>
+        {% endif %}
