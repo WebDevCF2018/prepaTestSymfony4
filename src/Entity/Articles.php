@@ -68,6 +68,7 @@ class Articles
     public function __construct()
     {
         $this->sectionssections = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->setThedate(new \DateTime());
     }
 
     public function getIdarticles(): ?int

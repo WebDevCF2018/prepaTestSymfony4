@@ -253,3 +253,25 @@ in index.html.twig
          * @Route("/admin/articles")
          */
 ### 28 corrige __tostring bug         
+in Users and Sections
+    
+    get the name:
+    
+    public function __toString()
+        {
+            return (string) $this->getThelogin();
+        }
+### 29 correct bug new (date)
+
+>must implement interface DateTimeInterface or be null, string returned
+        
+constructer from Articles when we click on /new
+    
+     /**
+         * Constructor
+         */
+        public function __construct()
+        {
+            $this->sectionssections = new \Doctrine\Common\Collections\ArrayCollection();
+            $this->setThedate(new \DateTime());
+        }
