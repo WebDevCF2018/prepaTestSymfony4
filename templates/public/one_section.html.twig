@@ -31,7 +31,7 @@
         <h2>{{ item.getThetitle }}</h2>
         <h3>
             {% for categ in item.getSectionssections %}
-                {{ categ.getThetitled }} |
+                <a href="{{ path("detail_section",{"id":categ.getIdsections}) }}">{{ categ.getThetitled }}</a> |
             {% endfor %}
         </h3>
         <p>{{ item.getThetext|truncate(350,true) }} <a href="{{ path("detail_article",{'id': item.getIdarticles}) }}">Lire la suite</a></p>

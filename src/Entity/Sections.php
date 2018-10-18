@@ -41,6 +41,7 @@ class Sections
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\ManyToMany(targetEntity="Articles", inversedBy="sectionssections")
+     * @ORM\OrderBy({"idarticles" = "DESC"})
      * @ORM\JoinTable(name="sections_has_articles",
      *   joinColumns={
      *     @ORM\JoinColumn(name="sections_idsections", referencedColumnName="idsections")

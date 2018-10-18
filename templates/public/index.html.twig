@@ -13,7 +13,7 @@
         </li>
         {% for itemMenu in sections %}
         <li class="nav-item">
-            <a class="nav-link" href="./section/{{ itemMenu.getIdsections }}">{{ itemMenu.getThetitled }}</a>
+            <a class="nav-link" href="{{ path("detail_section",{"id":itemMenu.getIdsections}) }}">{{ itemMenu.getThetitled }}</a>
         </li>
         {% endfor %}
     </ul>
@@ -24,7 +24,7 @@
         <h2>{{ item.getThetitle }}</h2>
         <h3>
             {% for categ in item.getSectionssections %}
-                {{ categ.getThetitled }} |
+                <a href="{{ path("detail_section",{"id":categ.getIdsections}) }}">{{ categ.getThetitled }}</a> |
             {% endfor %}
         </h3>
         <p>{{ item.getThetext|truncate(350,true) }} <a href="{{ path("detail_article",{'id': item.getIdarticles}) }}">Lire la suite</a></p>

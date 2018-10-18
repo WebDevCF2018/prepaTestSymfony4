@@ -194,7 +194,39 @@ in index.html.twig
                     'articles' => $art,
                 ]);
  ### 21 order by for articles
- use findby for order by
+ use findby for order by into index method
  
         $art = $entityManager->getRepository(Articles::class)->
         findBy([],["idarticles"=>"DESC"])
+  ### 22 changer order by in annotation into Sections.php
+  - Publiccontroller method oneArticle
+  
+        // get all articles by one section, it's the easy way, 
+        you can use ORDER BY into sections.php entity,
+         views annotation before private $articlesarticles;
+         $art = $section->getArticlesarticles();
+ - in Sections.php add
+ > @ORM\OrderBy({"idarticles" = "DESC"})
+    
+        /**
+             * @var \Doctrine\Common\Collections\Collection
+             *
+             * @ORM\ManyToMany(targetEntity="Articles", inversedBy="sectionssections")
+             * @ORM\OrderBy({"idarticles" = "DESC"})
+             * @ORM\JoinTable(name="sections_has_articles",
+             *   joinColumns={
+             *     @ORM\JoinColumn(name="sections_idsections", referencedColumnName="idsections")
+             *   },
+             *   inverseJoinColumns={
+             *     @ORM\JoinColumn(name="articles_idarticles", referencedColumnName="idarticles")
+             *   }
+             * )
+             */
+            private $articlesarticles;
+        
+ ### 23 click for sections everywhere with path
+ 
+ > {{ path("detail_section",{"id":categ.getIdsections}) }}
+ 
+ 
+        

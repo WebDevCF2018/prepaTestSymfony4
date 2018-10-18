@@ -11,6 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="articles", indexes={@ORM\Index(name="fk_articles_users_idx", columns={"users_idusers"})})
  * @ORM\Entity
+ *
  */
 class Articles
 {

@@ -76,7 +76,7 @@ class PublicController extends AbstractController
         // get one section by its "id" from db
         $section = $entityManager->getRepository(Sections::class)->find($id);
 
-        // get all articles by one section, it's the easy way, but you can't use ORDER BY
+        // get all articles by one section, it's the easy way, you can use ORDER BY into sections.php entity, views annotation before private $articlesarticles;
         $art = $section->getArticlesarticles();
 
 
