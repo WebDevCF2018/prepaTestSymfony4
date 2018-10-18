@@ -243,3 +243,6 @@ in index.html.twig
   ### 25 fixe article's bug and prepare to make a crud to Articles
   > git branch crudarticle
   > git checkout crudarticle       
+  ### 26 CRUD Articles
+    php bin/console make:crud Articles
+
