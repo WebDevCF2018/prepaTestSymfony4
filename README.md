@@ -240,9 +240,16 @@ in index.html.twig
         {% if articles is empty %}
                 <h3>Il n'y a pas encore d'article sur notre site</h3><hr>
         {% endif %}
-  ### 25 fixe article's bug and prepare to make a crud to Articles
+### 25 fixe article's bug and prepare to make a crud to Articles
   > git branch crudarticle
   > git checkout crudarticle       
-  ### 26 CRUD Articles
+### 26 CRUD Articles
     php bin/console make:crud Articles
 
+### 27 change route for future private's acces
+    App\Controller\ArticlesController :
+ 
+        /**
+         * @Route("/admin/articles")
+         */
+### 28 corrige __tostring bug         
