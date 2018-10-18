@@ -193,3 +193,8 @@ in index.html.twig
                     'section' => $section,
                     'articles' => $art,
                 ]);
+ ### 21 order by for articles
+ use findby for order by
+ 
+        $art = $entityManager->getRepository(Articles::class)->
+        findBy([],["idarticles"=>"DESC"])

@@ -25,8 +25,8 @@ class PublicController extends AbstractController
         // get all sections in db for menu
         $rub = $entityManager->getRepository(Sections::class)->findAll();
 
-        // get all articles from db
-        $art = $entityManager->getRepository(Articles::class)->findAll();
+        // get all articles from db ORDER BY idarticles DESC
+        $art = $entityManager->getRepository(Articles::class)->findBy([],["idarticles"=>"DESC"]);
 
         // return the Twig's view with 2 arguments
         return $this->render('public/index.html.twig', [
@@ -76,8 +76,10 @@ class PublicController extends AbstractController
         // get one section by its "id" from db
         $section = $entityManager->getRepository(Sections::class)->find($id);
 
-        // get all articles by one section
+        // get all articles by one section, it's the easy way, but you can't use ORDER BY
         $art = $section->getArticlesarticles();
+
+
 
         // return the Twig's view with 2 arguments
         return $this->render('public/one_section.html.twig', [
