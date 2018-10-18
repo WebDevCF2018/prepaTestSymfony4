@@ -240,6 +240,93 @@ in index.html.twig
         {% if articles is empty %}
                 <h3>Il n'y a pas encore d'article sur notre site</h3><hr>
         {% endif %}
-  ### 25 fixe article's bug and prepare to make a crud to Articles
+### 25 fixe article's bug and prepare to make a crud to Articles
   > git branch crudarticle
   > git checkout crudarticle       
+### 26 CRUD Articles
+    php bin/console make:crud Articles
+
+### 27 change route for future private's acces
+    App\Controller\ArticlesController :
+ 
+        /**
+         * @Route("/admin/articles")
+         */
+### 28 corrige __tostring bug         
+in Users and Sections
+    
+    get the name:
+    
+    public function __toString()
+        {
+            return (string) $this->getThelogin();
+        }
+### 29 correct bug new (date)
+
+>must implement interface DateTimeInterface or be null, string returned
+        
+constructer from Articles when we click on /new
+    
+     /**
+         * Constructor
+         */
+        public function __construct()
+        {
+            $this->sectionssections = new \Doctrine\Common\Collections\ArrayCollection();
+            $this->setThedate(new \DateTime());
+        }
+### 30 correct bug many to many
+usually, in a many to many relation, there are a complete many to many mapping:
+            
+            in Sections.php
+            
+            /**
+                 * @var \Doctrine\Common\Collections\Collection
+                 *
+                 * @ORM\ManyToMany(targetEntity="Articles", inversedBy="sectionssections")
+                 * @ORM\OrderBy({"idarticles" = "DESC"})
+                 * @ORM\JoinTable(name="sections_has_articles",
+                 *   joinColumns={
+                 *     @ORM\JoinColumn(name="sections_idsections", referencedColumnName="idsections")
+                 *   },
+                 *   inverseJoinColumns={
+                 *     @ORM\JoinColumn(name="articles_idarticles", referencedColumnName="idarticles")
+                 *   }
+                 * )
+                 */
+                private $articlesarticles;
+fBut a mappedBy relation in the other classe                
+              
+              in Articles.php
+            
+            /**
+                 * @var \Doctrine\Common\Collections\Collection
+                 *
+                 * @ORM\ManyToMany(targetEntity="Sections", mappedBy="articlesarticles")
+                 */
+                private $sectionssections;
+
+for avoid this potential bug: 
+write the complete relation in the 2 classes, but inverse the column
+    
+        in Articles.php
+        /**
+             * @var \Doctrine\Common\Collections\Collection
+             *
+             * @ORM\ManyToMany(targetEntity="Sections", inversedBy="articlesarticles")
+             * @ORM\JoinTable(name="sections_has_articles",
+             *   joinColumns={
+             *     @ORM\JoinColumn(name="articles_idarticles", referencedColumnName="idarticles")
+             *   },
+             *   inverseJoinColumns={
+             *     @ORM\JoinColumn(name="sections_idsections", referencedColumnName="idsections")
+             *   }
+             * )
+             */
+            private $sectionssections;
+  
+ ### 31 template the admin
+ 
+ 
+ 
+          

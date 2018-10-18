@@ -58,7 +58,15 @@ class Articles
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Sections", mappedBy="articlesarticles")
+     * @ORM\ManyToMany(targetEntity="Sections", inversedBy="articlesarticles")
+     * @ORM\JoinTable(name="sections_has_articles",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="articles_idarticles", referencedColumnName="idarticles")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="sections_idsections", referencedColumnName="idsections")
+     *   }
+     * )
      */
     private $sectionssections;
 
@@ -68,6 +76,7 @@ class Articles
     public function __construct()
     {
         $this->sectionssections = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->setThedate(new \DateTime());
     }
 
     public function getIdarticles(): ?int
@@ -149,6 +158,11 @@ class Articles
         }
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return (string) $this->getThetitle();
     }
 
 }
