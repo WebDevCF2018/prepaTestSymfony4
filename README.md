@@ -117,7 +117,7 @@ in index.html.twig
            </div>
            </nav>
        {% endblock %} 
-###  017 install twig extensions for use truncate     
+### 17 install twig extensions for use truncate     
     composer require twig/extensions
  after in config/packages/twig_extensions, decomment Twig\Extensions\TextExtension:
     
@@ -136,7 +136,7 @@ in index.html.twig
  use truncate in index.html.twig
     
     <p>{{ item.getThetext|truncate(350,true) }}</p>
-###  018 create the one article system
+### 18 create the one article system
  - PublicController.php
     
     /**
@@ -165,11 +165,11 @@ in index.html.twig
         }  
 - create templates/public/one_article.html.twig
  
-###  019 create link's dynamique with path
+### 19 create link's dynamique with path
     
         {{ path("detail_article",{'id': item.getIdarticles}) }}   
     
-### 020 create Sections system
+### 20 create Sections system
   - create oneSection($id) in PublicContraller
   - "if" in twig for active menu, create variable with "set"
   - change the link to dynamique
@@ -351,4 +351,24 @@ write the complete relation in the 2 classes, but inverse the column and delete 
     
  > config/packages/security.yaml
   
-          
+        security:
+            providers:
+                in_memory:
+            memory:
+                users:
+                    admin:
+                        password: admin
+                        roles: 'ROLE_ADMIN'
+            firewalls:
+                dev:
+                    pattern: ^/(_(profiler|wdt)|css|images|js)/
+                    security: false
+                main:
+                    anonymous: ~
+                    http_basic: ~
+
+            access_control:
+                - { path: ^/admin, roles: ROLE_ADMIN }
+
+            encoders:
+                Symfony\Component\Security\Core\User\User: plaintext
