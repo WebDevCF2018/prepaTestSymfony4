@@ -1,6 +1,10 @@
-###> phpStorm ###
+###> PHPStorm ###
 /.idea/
-###< phpStorm ###
+###< PHPStorm ###
+
+###> NetBeans ###
+/nbproject/
+###< NetBeans ###
 
 ###> symfony/framework-bundle ###
 /.env
@@ -17,3 +21,4 @@
 ###> symfony/web-server-bundle ###
 /.web-server-pid
 ###< symfony/web-server-bundle ###
+/nbproject/private/
