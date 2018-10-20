@@ -1,43 +1,43 @@
 # prepaTestSymfony4
 ##Préparation au test octobre 2018
-### step 1 create git project
+### 1 create git project
 - create a project on github with README.md
 - clone this project on your local project's folder
 > git clone url
 - open this with your IDE
-### step 2 install symfony 4 with composer
+### 2 install symfony 4 with composer
 > composer create-project symfony/website-skeleton prov 
 - move prov's content to our project prepaTestSymfony4
 - remove prov's folder
 - if you work with phpstorm, put /.idea/ into .gitignore
-### step 3 add security checker
+### 3 add security checker
 > composer require sensiolabs/security-checker --dev
-### step 4 create externe DB MySQL
+### 4 create externe DB MySQL
 - create datas folder
 - create the database schema with Workbench : /datas/prepatestsymfony4.mwb
 - export diagram to image: /datas/diagram.png
 - real export in localhost (see /datas/export1-structure.sql)
-### step 5 change .env
+### 5 change .env
 change .env
 > DATABASE_URL=mysql://root:@127.0.0.1:3306/prepatestsymfony4
-### step 6 create mapping database
+### 6 create mapping database
 > php bin/console doctrine:mapping:import 'App\Entity' annotation --path=src/Entity 
-### step 7 create setters and getters for entities
+### 7 create setters and getters for entities
 > php bin/console make:entity App\Entity --regenerate
-### step 8 create PublicController
+### 8 create PublicController
 > php bin/console make:controller PublicController
-### step 9 change routing
+### 9 change routing
 to the root in annotation
 > "/", name="accueil"
-### step 10 install bootstrap 4 CDN
+### 10 install bootstrap 4 CDN
 - CDN in base.html.twig
-### step 11 choose a theme
+### 11 choose a theme
 Free bootstrap basic themes: https://startbootstrap.com/
 - I choose:  https://startbootstrap.com/template-overviews/bare/
 - we make a good general template.html.twig with bootstrap end block
-### step 12 export datas
+### 12 export datas
 export dats in datas/export2-datas.sql
-### step 13: menu
+### 13: menu
 in front of PublicController.php
                        
     use App\Entity\Sections;
@@ -58,7 +58,7 @@ in index.html.twig
         {{ itemMenu.getIdsections }}">{{ itemMenu.getThetitled }}</a>
     </li>
             {% endfor %}
-### step 14 - get all articles on index.php 
+### 14 - get all articles on index.php 
 in front of PublicController.php
         
     // use entity Articles.php
@@ -79,7 +79,7 @@ in index.html.twig
             'sections' => $rub,
             'articles' => $art,
         ]);  
-### step 15 - display all articles on index.html.twig
+### 15 - display all articles on index.html.twig
 - no difference for the fields into Articles
 - automatical INNER JOIN or new query when we make the link one to many or many to many
 
@@ -94,7 +94,7 @@ in index.html.twig
             <h4>Par {{ item.getUsersusers.getTherealname }} 
             le {{ item.getThedate|date("d/m/Y à H \\h i \\m") }}</h4><hr>
         {% endfor %} 
-### step 16 - divise entete in two parts
+### 16 - divise entete in two parts
 
     {% block entete_haut %}
             <!-- Navigation -->
@@ -136,7 +136,7 @@ in index.html.twig
  use truncate in index.html.twig
     
     <p>{{ item.getThetext|truncate(350,true) }}</p>
- ###  018 create the one article system
+###  018 create the one article system
  - PublicController.php
     
     /**
@@ -165,11 +165,11 @@ in index.html.twig
         }  
 - create templates/public/one_article.html.twig
  
-  ###  019 create link's dynamique with path
+###  019 create link's dynamique with path
     
         {{ path("detail_article",{'id': item.getIdarticles}) }}   
     
-  ### 020 create Sections system
+### 020 create Sections system
   - create oneSection($id) in PublicContraller
   - "if" in twig for active menu, create variable with "set"
   - change the link to dynamique
@@ -193,12 +193,12 @@ in index.html.twig
                     'section' => $section,
                     'articles' => $art,
                 ]);
- ### 21 order by for articles
+### 21 order by for articles
  use findby for order by into index method
  
         $art = $entityManager->getRepository(Articles::class)->
         findBy([],["idarticles"=>"DESC"])
-  ### 22 changer order by in annotation into Sections.php
+### 22 changer order by in annotation into Sections.php
   - Publiccontroller method oneArticle
   
         // get all articles by one section, it's the easy way, 
@@ -206,7 +206,7 @@ in index.html.twig
          views annotation before private $articlesarticles;
          $art = $section->getArticlesarticles();
  - in Sections.php add
- > @ORM\OrderBy({"idarticles" = "DESC"})
+ >  @ORM\OrderBy({"idarticles" = "DESC"})
     
         /**
              * @var \Doctrine\Common\Collections\Collection
@@ -224,11 +224,11 @@ in index.html.twig
              */
             private $articlesarticles;
         
- ### 23 click for sections everywhere with path
+### 23 click for sections everywhere with path
  
  > {{ path("detail_section",{"id":categ.getIdsections}) }}
  
- ### 24 if not article, write a message
+### 24 if not article, write a message
  > public/one_section.html.twig
     
     {% if articles is empty %}
@@ -307,13 +307,13 @@ fBut a mappedBy relation in the other classe
                 private $sectionssections;
 
 for avoid this potential bug: 
-write the complete relation in the 2 classes, but inverse the column
+write the complete relation in the 2 classes, but inverse the column and delete the "inversedBy"
     
-        in Articles.php
+    in Articles.php
         /**
              * @var \Doctrine\Common\Collections\Collection
              *
-             * @ORM\ManyToMany(targetEntity="Sections", inversedBy="articlesarticles")
+             * @ORM\ManyToMany(targetEntity="Sections")
              * @ORM\JoinTable(name="sections_has_articles",
              *   joinColumns={
              *     @ORM\JoinColumn(name="articles_idarticles", referencedColumnName="idarticles")
@@ -324,9 +324,29 @@ write the complete relation in the 2 classes, but inverse the column
              * )
              */
             private $sectionssections;
+            
+    in Sections.php
+        /**
+             * @var \Doctrine\Common\Collections\Collection
+             *
+             * @ORM\ManyToMany(targetEntity="Articles")
+             * @ORM\OrderBy({"idarticles" = "DESC"})
+             * @ORM\JoinTable(name="sections_has_articles",
+             *   joinColumns={
+             *     @ORM\JoinColumn(name="sections_idsections", referencedColumnName="idsections")
+             *   },
+             *   inverseJoinColumns={
+             *     @ORM\JoinColumn(name="articles_idarticles", referencedColumnName="idarticles")
+             *   }
+             * )
+             */
+             private $articlesarticles;
   
- ### 31 template the admin
  
+ ### 31 template the admin
+
+ With the same Bootstrap template
+
  ### 32 create simple identification
     
  > config/packages/security.yaml
