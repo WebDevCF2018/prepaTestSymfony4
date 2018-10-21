@@ -554,3 +554,21 @@ with
         </form>
         {% endblock %}
 
+### 38 dev to prod
+
+- change .env
+
+        APP_ENV=prod
+        TRUSTED_HOSTS=YOUR-URL-SITE
+        DATABASE_URL=CHANGE-WITH-YOUR-ONLINE-DB-PARAM
+
+- change config/services.yaml
+
+        parameters:
+            locale: 'en'
+            app.dir: '...'
+            app.contents_dir: '...'
+            app.dir.contents: '...'
+            app.contents-dir: '...'
+        
+- upload your site with FTP (make a cache:clear before !), after link your URL' site adress to your /public directory
