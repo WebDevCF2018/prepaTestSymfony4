@@ -572,3 +572,37 @@ with
             app.contents-dir: '...'
         
 - upload your site with FTP (make a cache:clear before !), after link your URL' site adress to your /public directory
+
+### 39 encrypt the password in bcrypt:
+
+- change config/packages/security.yaml
+
+        security:
+            providers:
+                in_memory:
+                    memory:
+                        users:
+                            GiveMe5:
+                            password: $2y$10$7HbJf6WAI3IRgiKlL3.L6.sjp6FCKDmdmFHMZN7SktyDpXbVX/Ih2
+                            roles: 'ROLE_ADMIN'
+            firewalls:
+                dev:
+                    pattern: ^/(_(profiler|wdt)|css|images|js)/
+                    security: false
+                main:
+                    anonymous: ~
+                    form_login:
+                        login_path: login
+                        check_path: login
+                        # the route if your are connected
+                        default_target_path: articles_index
+                    logout:
+                        path:   the_logout
+                        target: accueil
+
+        access_control:
+             - { path: ^/admin, roles: ROLE_ADMIN }
+
+        encoders:
+            Symfony\Component\Security\Core\User\User:
+                algorithm: bcrypt

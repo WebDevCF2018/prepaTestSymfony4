@@ -3,8 +3,8 @@ security:
         in_memory:
             memory:
                 users:
-                    admin:
-                        password: admin
+                    GiveMe5:
+                        password: $2y$10$7HbJf6WAI3IRgiKlL3.L6.sjp6FCKDmdmFHMZN7SktyDpXbVX/Ih2
                         roles: 'ROLE_ADMIN'
 
 
@@ -27,4 +27,5 @@ security:
          - { path: ^/admin, roles: ROLE_ADMIN }
 
     encoders:
-        Symfony\Component\Security\Core\User\User: plaintext
+        Symfony\Component\Security\Core\User\User:
+            algorithm: bcrypt
