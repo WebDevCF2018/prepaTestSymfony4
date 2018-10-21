@@ -400,3 +400,19 @@ we can disconnet to this URL:
 > http://127.0.0.1:8000/logout
 
 (but the cache reconnect us when we click to "admin")
+### 35 create links to disconnect from admin
+in all admin's templates with the "menu" block
+
+        {% block menu %}
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                <a class="nav-link" href="{{ path("articles_index") }}">
+                Accueil de l'administration
+                <span class="sr-only">(current)</span>
+                </a>
+                </li>
+                <li class="nav-item"> <a class="nav-link" 
+                href="{{ path('the_logout')}}">Déconnexion</a></li>
+            </ul>
+        {% endblock %}
+
