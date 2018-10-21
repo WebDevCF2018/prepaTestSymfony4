@@ -343,11 +343,11 @@ write the complete relation in the 2 classes, but inverse the column and delete 
              private $articlesarticles;
   
  
- ### 31 template the admin
+### 31 template the admin
 
  With the same Bootstrap template
 
- ### 32 create simple identification
+### 32 create simple identification
     
  > config/packages/security.yaml
   
@@ -372,3 +372,13 @@ write the complete relation in the 2 classes, but inverse the column and delete 
 
             encoders:
                 Symfony\Component\Security\Core\User\User: plaintext
+### 33 create links to admin
+
+in the "public"'s templates to "articles_index"
+        
+        {% for itemMenu in sections %}
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path("detail_section",{"id":itemMenu.getIdsections}) }}">{{ itemMenu.getThetitled }}</a>
+        </li>
+        {% endfor %}
+        <li class="nav-item"> <a class="nav-link" href="{{ path('articles_index')}}">Admin</a></li>
