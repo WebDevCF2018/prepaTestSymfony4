@@ -472,3 +472,85 @@ exemple in articles/index.html.twig
         <a href="{{ path('articles_new') }}">Créer un nouvel article</a>
     {% endblock %}
 
+### 37 create a login page
+1) change
+> config/packages/security.yaml
+
+with 
+
+        firewalls:
+            # ....
+            main:
+                anonymous: ~
+                form_login:
+                    login_path: login
+                    check_path: login
+                    # the route if your are connected
+                    default_target_path: articles_index
+                logout:
+                    path:   the_logout
+                    target: accueil
+2) create src/Controller/SecurityController.php with console
+> php bin/console make:controller SecurityController
+
+3) replace this generate code with
+
+        namespace App\Controller;
+
+        use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+        use Symfony\Component\Routing\Annotation\Route;
+        use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+
+        class SecurityController extends AbstractController
+        {
+        /**
+         * @Route("/login", name="login")
+         */
+        public function login(AuthenticationUtils $authenticationUtils)
+        {
+        // get the login error if there is one
+        $error = $authenticationUtils->getLastAuthenticationError();
+
+        // last username entered by the user
+        $lastUsername = $authenticationUtils->getLastUsername();
+
+        return $this->render('security/index.html.twig', array(
+            'last_username' => $lastUsername,
+            'error'         => $error,
+        ));
+        }
+    }
+
+4) change de template of this class (security/index.html.twig) with
+
+        {% extends 'template.html.twig' %}
+        {% block title %}{{ parent() }} - connexion{% endblock %}
+
+        {% block titre %}{{ parent() }} - connexion{% endblock %}
+        {% block stitre %}connectez-vous sur notre site d'actualité pour Webdev{% endblock %}
+
+        {% block menu %}
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path("accueil") }}">Accueil</a>
+            </li>
+        </ul>
+        {% endblock %}
+
+        {% block contenu %}
+        {% if error %}
+        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+
+        <form action="{{ path('login') }}" method="post">
+        <label for="username">Votre identifiant:</label>
+        <input type="text" id="username" name="_username" value="{{ last_username }}" />
+
+        <label for="password">Votre mot de passe:</label>
+        <input type="password" id="password" name="_password" />
+
+
+        <button type="submit">connexion</button>
+        </form>
+        {% endblock %}
+

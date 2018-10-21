@@ -14,7 +14,11 @@ security:
             security: false
         main:
             anonymous: ~
-            http_basic: ~
+            form_login:
+                login_path: login
+                check_path: login
+                # the route if your are connected
+                default_target_path: articles_index
             logout:
                 path:   the_logout
                 target: accueil
