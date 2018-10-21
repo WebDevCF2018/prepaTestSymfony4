@@ -5,6 +5,14 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: 'en'
+     # don't do this: 'dir' is too generic and it doesn't convey any meaning
+    app.dir: '...'
+    # do this: short but easy to understand names
+    app.contents_dir: '...'
+    # it's OK to use dots, underscores, dashes or nothing, but always
+    # be consistent and use the same format for all the parameters
+    app.dir.contents: '...'
+    app.contents-dir: '...'
 
 services:
     # default configuration for services in *this* file
