@@ -378,7 +378,25 @@ in the "public"'s templates to "articles_index"
         
         {% for itemMenu in sections %}
         <li class="nav-item">
-            <a class="nav-link" href="{{ path("detail_section",{"id":itemMenu.getIdsections}) }}">{{ itemMenu.getThetitled }}</a>
+            <a class="nav-link" href="{{ path("detail_section",{"id":itemMenu.getIdsections}) }}">
+            {{ itemMenu.getThetitled }}</a>
         </li>
         {% endfor %}
         <li class="nav-item"> <a class="nav-link" href="{{ path('articles_index')}}">Admin</a></li>
+### 34 create system to disconnect from admin
+- in config/routes.yaml
+        
+        the_logout:
+            path: /logout
+- in config/packages/security.yaml
+
+        main:
+            anonymous: ~
+            http_basic: ~
+            logout:
+                path:   the_logout
+                target: accueil
+we can disconnet to this URL: 
+> http://127.0.0.1:8000/logout
+
+(but the cache reconnect us when we click to "admin")

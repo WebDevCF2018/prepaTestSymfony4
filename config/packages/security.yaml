@@ -15,6 +15,9 @@ security:
         main:
             anonymous: ~
             http_basic: ~
+            logout:
+                path:   the_logout
+                target: accueil
 
     access_control:
          - { path: ^/admin, roles: ROLE_ADMIN }

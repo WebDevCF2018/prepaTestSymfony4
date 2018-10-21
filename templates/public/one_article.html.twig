@@ -24,7 +24,7 @@
         <h2>{{ articles.getThetitle }}</h2>
         <h3>
             {% for categ in articles.getSectionssections %}
-                {{ categ.getThetitled }} |
+                <a href="{{ path("detail_section",{"id":categ.getIdsections}) }}">{{ categ.getThetitled }}</a> |
             {% endfor %}
         </h3>
         <p>{{ articles.getThetext|nl2br }}</p>
